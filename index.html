@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>California Drive Lab</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.165.0/build/three.module.js"
+      }
+    }
+  </script>
+</head>
+<body>
+  <main class="app-shell">
+    <section class="sim-panel" aria-label="3D driving simulator">
+      <canvas id="driveCanvas"></canvas>
+
+      <div class="hud hud-top">
+        <div>
+          <span class="hud-label">California Drive Lab</span>
+          <strong id="speedReadout">0 mph</strong>
+        </div>
+        <div class="hud-controls">
+          <span>WASD / Arrows</span>
+          <span>Space brake</span>
+          <span>C camera</span>
+          <span>R reset</span>
+        </div>
+      </div>
+
+      <div class="hud hud-bottom">
+        <span id="zoneReadout">Downtown Los Angeles</span>
+        <span id="cameraReadout">Chase camera</span>
+      </div>
+
+      <div class="crash-alert" id="crashAlert">CRASH</div>
+
+      <button class="brake-button" id="brakeButton" type="button" aria-label="Brake">
+        BRAKE
+      </button>
+    </section>
+
+    <aside class="control-panel" aria-label="Simulator options">
+      <header>
+        <p class="eyebrow">Browser 3D simulator</p>
+        <h1>California City Driver</h1>
+      </header>
+
+      <div class="panel-group">
+        <h2>Car Skin</h2>
+        <div class="skin-grid" id="skinGrid">
+          <button class="skin-option active" data-skin="sunset" style="--skin-a:#ff5f45;--skin-b:#111827" aria-label="Sunset racer"></button>
+          <button class="skin-option" data-skin="ocean" style="--skin-a:#11a8fd;--skin-b:#0f172a" aria-label="Pacific blue"></button>
+          <button class="skin-option" data-skin="golden" style="--skin-a:#f8c537;--skin-b:#3b2f0b" aria-label="Golden state"></button>
+          <button class="skin-option" data-skin="mint" style="--skin-a:#39d98a;--skin-b:#083344" aria-label="Mint electric"></button>
+          <button class="skin-option" data-skin="custom" style="--skin-a:#d946ef;--skin-b:#22d3ee" aria-label="Custom skin"></button>
+        </div>
+      </div>
+
+      <div class="panel-group two-col">
+        <label>
+          <span>Primary color</span>
+          <input id="primaryColor" type="color" value="#ff5f45">
+        </label>
+        <label>
+          <span>Stripe color</span>
+          <input id="stripeColor" type="color" value="#111827">
+        </label>
+      </div>
+
+      <div class="panel-group">
+        <h2>Avatar</h2>
+        <div class="avatar-preview">
+          <div class="avatar-head" id="avatarHead"></div>
+          <div class="avatar-body" id="avatarBody"></div>
+        </div>
+        <label>
+          <span>Driver name</span>
+          <input id="driverName" type="text" maxlength="18" value="Nova">
+        </label>
+      </div>
+
+      <div class="panel-group">
+        <div class="tabs" role="tablist" aria-label="Code panels">
+          <button class="tab active" data-tab="skinCode" type="button">Skin Code</button>
+          <button class="tab" data-tab="avatarCode" type="button">Avatar Code</button>
+        </div>
+        <textarea id="skinCode" spellcheck="false">{
+  "primary": "#ff5f45",
+  "stripe": "#111827",
+  "glow": "#ffd166"
+}</textarea>
+        <textarea id="avatarCode" class="hidden" spellcheck="false">{
+  "name": "Nova",
+  "helmet": "#ffffff",
+  "jacket": "#ff5f45"
+}</textarea>
+        <button id="applyCode" class="apply-button" type="button">Apply Code</button>
+      </div>
+    </aside>
+  </main>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
